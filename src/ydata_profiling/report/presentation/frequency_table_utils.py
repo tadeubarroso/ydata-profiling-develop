@@ -48,7 +48,7 @@ def _frequency_table(
         other_count = str(freqtable.count() - max_number_to_print)
         rows.append(
             {
-                "label": f"Other values ({other_count})",
+                "label": f"Outros valores ({other_count})",
                 "width": freq_other / max_freq,
                 "count": freq_other,
                 # Hack for tables with combined...
@@ -61,7 +61,7 @@ def _frequency_table(
     if freq_missing > min_freq:
         rows.append(
             {
-                "label": "(Missing)",
+                "label": "(Faltante)",
                 "width": freq_missing / max_freq,
                 "count": freq_missing,
                 "percentage": float(freq_missing) / n,

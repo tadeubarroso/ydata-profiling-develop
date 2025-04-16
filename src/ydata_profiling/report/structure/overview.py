@@ -81,7 +81,7 @@ def get_dataset_overview(config: Settings, summary: BaseDescription) -> Renderab
             }
             for type_name, count in summary.table["types"].items()
         ],
-        name="Variable types",
+        name="Tipos de variáveis",
         style=config.html.style,
     )
 

@@ -67,7 +67,7 @@ def unicode_summary_vc(vc: pd.Series) -> dict:
         from unicodedata import category as _category  # pylint: disable=import-error
 
         category = _category  # type: ignore
-        char_handler = lambda char: "(unknown)"  # noqa: E731
+        char_handler = lambda char: "(desconhecido)"  # noqa: E731
         block = char_handler
         block_abbr = char_handler
         category_long = char_handler

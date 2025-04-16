@@ -292,18 +292,18 @@ def render_categorical_unicode(
                         n=summary["n_characters"],
                         max_number_to_print=n_freq_table_max,
                     ),
-                    name="Most occurring characters",
+                    name="Carateres mais frequentes",
                     anchor_id=f"{varid}character_frequency",
                     redact=config.vars.cat.redact,
                 ),
             ],
-            name="Characters",
+            name="Carateres",
             anchor_id=f"{varid}characters",
             sequence_type="named_list",
         ),
         Container(
             category_items,
-            name="Categories",
+            name="Categorias",
             anchor_id=f"{varid}categories",
             sequence_type="named_list",
         ),
@@ -315,7 +315,7 @@ def render_categorical_unicode(
         ),
         Container(
             block_items,
-            name="Blocks",
+            name="Blocos",
             anchor_id=f"{varid}blocks",
             sequence_type="named_list",
         ),
@@ -476,7 +476,7 @@ def render_categorical(config: Settings, summary: dict) -> dict:
                         if summary["n_distinct"][idx] <= max_unique
                         else HTML(
                             f"<h4 class='indent'>{config.html.style._labels[idx]}</h4><br />"
-                            f"<em>Number of variable categories passes threshold (<code>config.plot.cat_freq.max_unique</code>)</em>"
+                            f"<em>Número de categorias da variável ultrapassa o limiar (<code>config.plot.cat_freq.max_unique</code>)</em>"
                         )
                         for idx, s in enumerate(summary["value_counts_without_nan"])
                     ],
@@ -505,7 +505,7 @@ def render_categorical(config: Settings, summary: dict) -> dict:
     bottom_items = [
         Container(
             overview_items,
-            name="Overview",
+            name="Visão geral",
             anchor_id=f"{varid}overview",
             sequence_type="batch_grid",
             batch_size=len(overview_items),

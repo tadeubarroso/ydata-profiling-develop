@@ -315,7 +315,7 @@ class HighCorrelationAlert(Alert):
 
     def _get_description(self) -> str:
         if self.values is not None:
-            description = f"[{self.column_name}] está altamente {self.values['corr']} ccorrelacionado(a) com [{self.values['fields'][0]}]"
+            description = f"[{self.column_name}] está altamente ccorrelacionado(a) {self.values['corr']}  com [{self.values['fields'][0]}]"
             if len(self.values["fields"]) > 1:
                 description += f" e {len(self.values['fields']) - 1} outros campos."
         else:
@@ -744,7 +744,7 @@ def check_correlation_alerts(config: Settings, correlations: dict) -> List[Alert
             alerts.append(
                 HighCorrelationAlert(
                     column_name=col,
-                    values={"corr": "overall", "fields": fields},
+                    values={"corr": "geral", "fields": fields},
                 )
             )
     return alerts
