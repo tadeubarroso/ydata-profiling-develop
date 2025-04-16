@@ -24,7 +24,7 @@ def render_count(config: Settings, summary: dict) -> dict:
     info = VariableInfo(
         summary["varid"],
         summary["varname"],
-        "Real number (&Ropf; / &Ropf;<sub>&ge;0</sub>)",
+        "Número Real (&Ropf; / &Ropf;<sub>&ge;0</sub>)",
         summary["alerts"],
         summary["description"],
         style=config.html.style,
@@ -33,22 +33,22 @@ def render_count(config: Settings, summary: dict) -> dict:
     table1 = Table(
         [
             {
-                "name": "Distinct",
+                "name": "Distintos",
                 "value": fmt(summary["n_distinct"]),
                 "alert": False,
             },
             {
-                "name": "Distinct (%)",
+                "name": "Distintos (%)",
                 "value": fmt_percent(summary["p_distinct"]),
                 "alert": False,
             },
             {
-                "name": "Missing",
+                "name": "Faltantes",
                 "value": fmt(summary["n_missing"]),
                 "alert": False,
             },
             {
-                "name": "Missing (%)",
+                "name": "Faltantes (%)",
                 "value": fmt_percent(summary["p_missing"]),
                 "alert": False,
             },
@@ -59,19 +59,19 @@ def render_count(config: Settings, summary: dict) -> dict:
     table2 = Table(
         [
             {
-                "name": "Mean",
+                "name": "Média",
                 "value": fmt_numeric(
                     summary["mean"], precision=config.report.precision
                 ),
                 "alert": False,
             },
             {
-                "name": "Minimum",
+                "name": "Mínimo",
                 "value": fmt_numeric(summary["min"], precision=config.report.precision),
                 "alert": False,
             },
             {
-                "name": "Maximum",
+                "name": "Máximo",
                 "value": fmt_numeric(summary["max"], precision=config.report.precision),
                 "alert": False,
             },
@@ -86,7 +86,7 @@ def render_count(config: Settings, summary: dict) -> dict:
                 "alert": False,
             },
             {
-                "name": "Memory size",
+                "name": "Tamanho em memória",
                 "value": fmt_bytesize(summary["memory_size"]),
                 "alert": False,
             },
@@ -97,7 +97,7 @@ def render_count(config: Settings, summary: dict) -> dict:
     mini_histo = Image(
         mini_histogram(config, *summary["histogram"]),
         image_format=image_format,
-        alt="Mini histogram",
+        alt="Mini histograma",
     )
 
     template_variables["top"] = Container(
@@ -109,15 +109,15 @@ def render_count(config: Settings, summary: dict) -> dict:
             histogram(config, *summary["histogram"]),
             image_format=image_format,
             alt="Histogram",
-            caption=f"<strong>Histogram with fixed size bins</strong> (bins={len(summary['histogram'][1]) - 1})",
-            name="Histogram",
+            caption=f"<strong>Histograma com intervalos de tamanho fixo</strong> (bins={len(summary['histogram'][1]) - 1})",
+            name="Histograma",
             anchor_id="histogram",
         )
     ]
 
     fq = FrequencyTable(
         template_variables["freq_table_rows"],
-        name="Common values",
+        name="Valores frequentes",
         anchor_id="common_values",
         redact=False,
     )
@@ -126,26 +126,26 @@ def render_count(config: Settings, summary: dict) -> dict:
         [
             FrequencyTable(
                 template_variables["firstn_expanded"],
-                name=f"Minimum {config.n_extreme_obs} values",
+                name=f"Mínimo {config.n_extreme_obs} valores",
                 anchor_id="firstn",
                 redact=False,
             ),
             FrequencyTable(
                 template_variables["lastn_expanded"],
-                name=f"Maximum {config.n_extreme_obs} values",
+                name=f"Máximo {config.n_extreme_obs} valores",
                 anchor_id="lastn",
                 redact=False,
             ),
         ],
         sequence_type="tabs",
-        name="Extreme values",
+        name="Valores Extremos",
         anchor_id="extreme_values",
     )
 
     template_variables["bottom"] = Container(
         [
             Container(
-                seqs, sequence_type="tabs", name="Histogram(s)", anchor_id="histograms"
+                seqs, sequence_type="tabs", name="Histograma(s)", anchor_id="histograms"
             ),
             fq,
             evs,

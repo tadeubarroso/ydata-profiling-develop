@@ -47,27 +47,27 @@ def render_text(config: Settings, summary: Dict[str, Any]) -> Dict[str, Any]:
     table = Table(
         [
             {
-                "name": "Distinct",
+                "name": "Distintos",
                 "value": fmt(summary["n_distinct"]),
                 "alert": "n_distinct" in summary["alert_fields"],
             },
             {
-                "name": "Distinct (%)",
+                "name": "Distintos (%)",
                 "value": fmt_percent(summary["p_distinct"]),
                 "alert": "p_distinct" in summary["alert_fields"],
             },
             {
-                "name": "Missing",
+                "name": "Faltantes",
                 "value": fmt(summary["n_missing"]),
                 "alert": "n_missing" in summary["alert_fields"],
             },
             {
-                "name": "Missing (%)",
+                "name": "Faltantes (%)",
                 "value": fmt_percent(summary["p_missing"]),
                 "alert": "p_missing" in summary["alert_fields"],
             },
             {
-                "name": "Memory size",
+                "name": "Tamanho em memória",
                 "value": fmt_bytesize(summary["memory_size"]),
                 "alert": False,
             },
@@ -135,7 +135,7 @@ def render_text(config: Settings, summary: Dict[str, Any]) -> Dict[str, Any]:
         overview_items.append(sample)
     overview = Container(
         overview_items,
-        name="Overview",
+        name="Visão Geral",
         anchor_id=f"{varid}overview",
         sequence_type="batch_grid",
         batch_size=len(overview_items),
@@ -152,7 +152,7 @@ def render_text(config: Settings, summary: Dict[str, Any]) -> Dict[str, Any]:
 
         fqwo = FrequencyTable(
             woc,
-            name="Common words",
+            name="Palavras frequentes",
             anchor_id=f"{varid}cwo",
             redact=config.vars.text.redact,
         )
@@ -166,7 +166,7 @@ def render_text(config: Settings, summary: Dict[str, Any]) -> Dict[str, Any]:
         bottom_items.append(
             Container(
                 [fqwo, image],
-                name="Words",
+                name="Palavras",
                 anchor_id=f"{varid}word",
                 sequence_type="grid",
             )
@@ -176,7 +176,7 @@ def render_text(config: Settings, summary: Dict[str, Any]) -> Dict[str, Any]:
         bottom_items.append(
             Container(
                 [unitab],
-                name="Characters",
+                name="Carateres",
                 anchor_id=f"{varid}characters",
                 sequence_type="grid",
             )

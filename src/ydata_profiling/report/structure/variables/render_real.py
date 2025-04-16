@@ -22,7 +22,7 @@ def render_real(config: Settings, summary: dict) -> dict:
     template_variables = render_common(config, summary)
     image_format = config.plot.image_format
 
-    name = "Real number (&Ropf;)"
+    name = "Número Real (&Ropf;)"
 
     # Top
     info = VariableInfo(
@@ -142,11 +142,11 @@ def render_real(config: Settings, summary: dict) -> dict:
     quantile_statistics = Table(
         [
             {
-                "name": "Minimum",
+                "name": "Mínimo",
                 "value": fmt_numeric(summary["min"], precision=config.report.precision),
             },
             {
-                "name": "5-th percentile",
+                "name": "5-th percentil",
                 "value": fmt_numeric(summary["5%"], precision=config.report.precision),
             },
             {
@@ -154,7 +154,7 @@ def render_real(config: Settings, summary: dict) -> dict:
                 "value": fmt_numeric(summary["25%"], precision=config.report.precision),
             },
             {
-                "name": "median",
+                "name": "mediana",
                 "value": fmt_numeric(summary["50%"], precision=config.report.precision),
             },
             {
@@ -162,84 +162,84 @@ def render_real(config: Settings, summary: dict) -> dict:
                 "value": fmt_numeric(summary["75%"], precision=config.report.precision),
             },
             {
-                "name": "95-th percentile",
+                "name": "95-th percentil",
                 "value": fmt_numeric(summary["95%"], precision=config.report.precision),
             },
             {
-                "name": "Maximum",
+                "name": "Máximo",
                 "value": fmt_numeric(summary["max"], precision=config.report.precision),
             },
             {
-                "name": "Range",
+                "name": "Intervalo",
                 "value": fmt_numeric(
                     summary["range"], precision=config.report.precision
                 ),
             },
             {
-                "name": "Interquartile range (IQR)",
+                "name": "Amplitude interquartil (AIQ)",
                 "value": fmt_numeric(summary["iqr"], precision=config.report.precision),
             },
         ],
-        name="Quantile statistics",
+        name="Estatísticas dos quantis",
         style=config.html.style,
     )
 
     descriptive_statistics = Table(
         [
             {
-                "name": "Standard deviation",
+                "name": "Desvio padrão",
                 "value": fmt_numeric(summary["std"], precision=config.report.precision),
             },
             {
-                "name": "Coefficient of variation (CV)",
+                "name": "Coeficiente de variação (CV)",
                 "value": fmt_numeric(summary["cv"], precision=config.report.precision),
             },
             {
-                "name": "Kurtosis",
+                "name": "Curtose",
                 "value": fmt_numeric(
                     summary["kurtosis"], precision=config.report.precision
                 ),
             },
             {
-                "name": "Mean",
+                "name": "Média",
                 "value": fmt_numeric(
                     summary["mean"], precision=config.report.precision
                 ),
             },
             {
-                "name": "Median Absolute Deviation (MAD)",
+                "name": "Desvio absoluto mediano (DAM)",
                 "value": fmt_numeric(summary["mad"], precision=config.report.precision),
             },
             {
-                "name": "Skewness",
+                "name": "Assimetria",
                 "value": fmt_numeric(
                     summary["skewness"], precision=config.report.precision
                 ),
                 "class": "alert" if "skewness" in summary["alert_fields"] else "",
             },
             {
-                "name": "Sum",
+                "name": "Soma",
                 "value": fmt_numeric(summary["sum"], precision=config.report.precision),
             },
             {
-                "name": "Variance",
+                "name": "Variância",
                 "value": fmt_numeric(
                     summary["variance"], precision=config.report.precision
                 ),
             },
             {
-                "name": "Monotonicity",
+                "name": "Monotonicidade",
                 "value": fmt_monotonic(summary["monotonic"]),
             },
         ],
-        name="Descriptive statistics",
+        name="Estatística descritiva",
         style=config.html.style,
     )
 
     statistics = Container(
         [quantile_statistics, descriptive_statistics],
         anchor_id=f"{varid}statistics",
-        name="Statistics",
+        name="Estatísticas",
         sequence_type="grid",
     )
 
@@ -250,23 +250,23 @@ def render_real(config: Settings, summary: dict) -> dict:
             [x[1] for x in summary.get("histogram", [])],
         )
         bins = len(summary["histogram"][0][1]) - 1 if "histogram" in summary else 0
-        hist_caption = f"<strong>Histogram with fixed size bins</strong> (bins={bins})"
+        hist_caption = f"<strong>Histograma com intervalos de tamanho fixo</strong> (bins={bins})"
     else:
         hist_data = histogram(config, *summary["histogram"])
-        hist_caption = f"<strong>Histogram with fixed size bins</strong> (bins={len(summary['histogram'][1]) - 1})"
+        hist_caption = f"<strong>Histograma com intervalos de tamanho fixos</strong> (bins={len(summary['histogram'][1]) - 1})"
 
     hist = Image(
         hist_data,
         image_format=image_format,
         alt="Histogram",
         caption=hist_caption,
-        name="Histogram",
+        name="Histograma",
         anchor_id=f"{varid}histogram",
     )
 
     fq = FrequencyTable(
         template_variables["freq_table_rows"],
-        name="Common values",
+        name="Valores frequentes",
         anchor_id=f"{varid}common_values",
         redact=False,
     )
@@ -275,19 +275,19 @@ def render_real(config: Settings, summary: dict) -> dict:
         [
             FrequencyTable(
                 template_variables["firstn_expanded"],
-                name=f"Minimum {config.n_extreme_obs} values",
+                name=f"Mínimo {config.n_extreme_obs} valores",
                 anchor_id=f"{varid}firstn",
                 redact=False,
             ),
             FrequencyTable(
                 template_variables["lastn_expanded"],
-                name=f"Maximum {config.n_extreme_obs} values",
+                name=f"Máximo {config.n_extreme_obs} valores",
                 anchor_id=f"{varid}lastn",
                 redact=False,
             ),
         ],
         sequence_type="tabs",
-        name="Extreme values",
+        name="Valores Extremos",
         anchor_id=f"{varid}extreme_values",
     )
 
