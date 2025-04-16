@@ -11,7 +11,7 @@ def to_html(df: pd.DataFrame) -> str:
     if df.empty:
         html = html.replace(
             "<tbody>",
-            f"<tbody><tr><td colspan={len(df.columns) + 1}>Dataset does not contain duplicate rows.</td></tr>",
+            f"<tbody><tr><td colspan={len(df.columns) + 1}>O conjunto de dados não contém linhas duplicadas.</td></tr>",
         )
     return html
 
