@@ -88,7 +88,7 @@ def get_dataset_overview(config: Settings, summary: BaseDescription) -> Renderab
     return Container(
         [dataset_info, dataset_types],
         anchor_id="dataset_overview",
-        name="Overview",
+        name="Visão Geral",
         sequence_type="grid",
     )
 
@@ -131,12 +131,12 @@ def get_dataset_schema(config: Settings, metadata: dict) -> Container:
         [
             Table(
                 about_dataset,
-                name="Dataset",
+                name="Conjunto de dados",
                 anchor_id="metadata_dataset",
                 style=config.html.style,
             )
         ],
-        name="Dataset",
+        name="Conjunto de dados",
         anchor_id="dataset",
         sequence_type="grid",
     )
@@ -175,14 +175,14 @@ def get_dataset_reproduction(config: Settings, summary: BaseDescription) -> Rend
             {"name": "Versão do software", "value": fmt_version(version)},
             {"name": "Descarregar configuração", "value": fmt_config(config_file)},
         ],
-        name="Reproduction",
+        name="Reprodução",
         anchor_id="overview_reproduction",
         style=config.html.style,
     )
 
     return Container(
         [reproduction_table],
-        name="Reproduction",
+        name="Reprodução",
         anchor_id="reproduction",
         sequence_type="grid",
     )
@@ -205,7 +205,7 @@ def get_dataset_column_definitions(config: Settings, definitions: dict) -> Conta
                 {"name": column, "value": fmt(value)}
                 for column, value in definitions.items()
             ],
-            name="Variable descriptions",
+            name="Descrições das variáveis",
             anchor_id="variable_definition_table",
             style=config.html.style,
         )
@@ -213,7 +213,7 @@ def get_dataset_column_definitions(config: Settings, definitions: dict) -> Conta
 
     return Container(
         variable_descriptions,
-        name="Variables",
+        name="Variáveis",
         anchor_id="variable_descriptions",
         sequence_type="grid",
     )
@@ -258,7 +258,7 @@ def get_dataset_alerts(config: Settings, alerts: list) -> Alerts:
 
         return Alerts(
             alerts=combined_alerts,
-            name=f"Alerts ({count})",
+            name=f"Alertas ({count})",
             anchor_id="alerts",
             style=config.html.style,
         )
@@ -266,7 +266,7 @@ def get_dataset_alerts(config: Settings, alerts: list) -> Alerts:
     count = len([alert for alert in alerts if alert.alert_type != AlertType.REJECTED])
     return Alerts(
         alerts=alerts,
-        name=f"Alerts ({count})",
+        name=f"Alertas ({count})",
         anchor_id="alerts",
         style=config.html.style,
     )
@@ -283,28 +283,28 @@ def get_timeseries_items(config: Settings, summary: BaseDescription) -> Containe
     assert isinstance(summary.time_index_analysis, TimeIndexAnalysis)
     table_stats = [
         {
-            "name": "Number of series",
+            "name": "Número de séries",
             "value": fmt_number(summary.time_index_analysis.n_series),
         },
         {
-            "name": "Time series length",
+            "name": "Comprimento da série temporal",
             "value": fmt_number(summary.time_index_analysis.length),
         },
         {
-            "name": "Starting point",
+            "name": "Ponto inicial",
             "value": fmt_tsindex_limit(summary.time_index_analysis.start),
         },
         {
-            "name": "Ending point",
+            "name": "Ponto final",
             "value": fmt_tsindex_limit(summary.time_index_analysis.end),
         },
         {
-            "name": "Period",
+            "name": "Período",
             "value": fmt_timespan_timedelta(summary.time_index_analysis.period),
         },
     ]
 
-    ts_info = Table(table_stats, name="Timeseries statistics", style=config.html.style)
+    ts_info = Table(table_stats, name="Estatísticas das séries temporais", style=config.html.style)
 
     dpi_bak = config.plot.dpi
     config.plot.dpi = 300
@@ -319,7 +319,7 @@ def get_timeseries_items(config: Settings, summary: BaseDescription) -> Containe
         plot_overview_timeseries(config, summary.variables, scale=True),
         image_format=config.plot.image_format,
         alt="ts_plot_scaled",
-        name="Scaled",
+        name="Ajustado",
         anchor_id="ts_plot_scaled_overview",
     )
     config.plot.dpi = dpi_bak
@@ -333,7 +333,7 @@ def get_timeseries_items(config: Settings, summary: BaseDescription) -> Containe
     return Container(
         [ts_info, ts_tab],
         anchor_id="timeseries_overview",
-        name="Time Series",
+        name="Séries temporais",
         sequence_type="grid",
     )
 

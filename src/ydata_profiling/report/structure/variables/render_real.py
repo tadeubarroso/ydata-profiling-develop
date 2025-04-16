@@ -37,37 +37,37 @@ def render_real(config: Settings, summary: dict) -> dict:
     table1 = Table(
         [
             {
-                "name": "Distinct",
+                "name": "Distintos",
                 "value": fmt(summary["n_distinct"]),
                 "alert": "n_distinct" in summary["alert_fields"],
             },
             {
-                "name": "Distinct (%)",
+                "name": "Distintos (%)",
                 "value": fmt_percent(summary["p_distinct"]),
                 "alert": "p_distinct" in summary["alert_fields"],
             },
             {
-                "name": "Missing",
+                "name": "Faltantes",
                 "value": fmt(summary["n_missing"]),
                 "alert": "n_missing" in summary["alert_fields"],
             },
             {
-                "name": "Missing (%)",
+                "name": "Faltantes (%)",
                 "value": fmt_percent(summary["p_missing"]),
                 "alert": "p_missing" in summary["alert_fields"],
             },
             {
-                "name": "Infinite",
+                "name": "Infinito",
                 "value": fmt(summary["n_infinite"]),
                 "alert": "n_infinite" in summary["alert_fields"],
             },
             {
-                "name": "Infinite (%)",
+                "name": "Infinito (%)",
                 "value": fmt_percent(summary["p_infinite"]),
                 "alert": "p_infinite" in summary["alert_fields"],
             },
             {
-                "name": "Mean",
+                "name": "Média",
                 "value": fmt_numeric(
                     summary["mean"], precision=config.report.precision
                 ),
@@ -80,12 +80,12 @@ def render_real(config: Settings, summary: dict) -> dict:
     table2 = Table(
         [
             {
-                "name": "Minimum",
+                "name": "Mínimo",
                 "value": fmt_numeric(summary["min"], precision=config.report.precision),
                 "alert": False,
             },
             {
-                "name": "Maximum",
+                "name": "Máximo",
                 "value": fmt_numeric(summary["max"], precision=config.report.precision),
                 "alert": False,
             },
@@ -100,17 +100,17 @@ def render_real(config: Settings, summary: dict) -> dict:
                 "alert": "p_zeros" in summary["alert_fields"],
             },
             {
-                "name": "Negative",
+                "name": "Negativo",
                 "value": fmt(summary["n_negative"]),
                 "alert": False,
             },
             {
-                "name": "Negative (%)",
+                "name": "Negativo (%)",
                 "value": fmt_percent(summary["p_negative"]),
                 "alert": False,
             },
             {
-                "name": "Memory size",
+                "name": "Tamanho em memória",
                 "value": fmt_bytesize(summary["memory_size"]),
                 "alert": False,
             },
@@ -126,13 +126,13 @@ def render_real(config: Settings, summary: dict) -> dict:
                 [x[1] for x in summary.get("histogram", [])],
             ),
             image_format=image_format,
-            alt="Mini histogram",
+            alt="Mini histograma",
         )
     else:
         mini_histo = Image(
             mini_histogram(config, *summary["histogram"]),
             image_format=image_format,
-            alt="Mini histogram",
+            alt="Mini histograma",
         )
 
     template_variables["top"] = Container(

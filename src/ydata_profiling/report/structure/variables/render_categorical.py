@@ -32,20 +32,20 @@ def render_categorical_frequency(
     frequency_table = Table(
         [
             {
-                "name": "Unique",
+                "name": "Únicos",
                 "value": fmt_number(summary["n_unique"]),
                 "hint": help(
-                    "The number of unique values (all values that occur exactly once in the dataset)."
+                    "O número de valores únicos (todos os valores que ocorrem exatamente uma vez no conjunto de dados)."
                 ),
                 "alert": "n_unique" in summary["alert_fields"],
             },
             {
-                "name": "Unique (%)",
+                "name": "Únicos (%)",
                 "value": fmt_percent(summary["p_unique"]),
                 "alert": "p_unique" in summary["alert_fields"],
             },
         ],
-        name="Unique",
+        name="Únicos",
         anchor_id=f"{varid}_unique_stats",
         style=config.html.style,
     )
@@ -81,7 +81,7 @@ def render_categorical_length(
                 "alert": False,
             },
         ],
-        name="Length",
+        name="Comprimento",
         anchor_id=f"{varid}lengthstats",
         style=config.html.style,
     )
@@ -355,27 +355,27 @@ def render_categorical(config: Settings, summary: dict) -> dict:
     table = Table(
         [
             {
-                "name": "Distinct",
+                "name": "Distintos",
                 "value": fmt(summary["n_distinct"]),
                 "alert": "n_distinct" in summary["alert_fields"],
             },
             {
-                "name": "Distinct (%)",
+                "name": "Distintos (%)",
                 "value": fmt_percent(summary["p_distinct"]),
                 "alert": "p_distinct" in summary["alert_fields"],
             },
             {
-                "name": "Missing",
+                "name": "Faltante",
                 "value": fmt(summary["n_missing"]),
                 "alert": "n_missing" in summary["alert_fields"],
             },
             {
-                "name": "Missing (%)",
+                "name": "Faltante (%)",
                 "value": fmt_percent(summary["p_missing"]),
                 "alert": "p_missing" in summary["alert_fields"],
             },
             {
-                "name": "Memory size",
+                "name": "Tamanho em memória",
                 "value": fmt_bytesize(summary["memory_size"]),
                 "alert": False,
             },
@@ -398,7 +398,7 @@ def render_categorical(config: Settings, summary: dict) -> dict:
 
     frequency_table = FrequencyTable(
         template_variables["freq_table_rows"],
-        name="Common Values",
+        name="Valores Frequentes",
         anchor_id=f"{varid}common_values",
         redact=config.vars.cat.redact,
     )
@@ -432,7 +432,7 @@ def render_categorical(config: Settings, summary: dict) -> dict:
                     }
                     for name, *value in zip(rows, *summary["first_rows"])
                 ],
-                name="Sample",
+                name="Amostra",
                 style=config.html.style,
             )
         else:
@@ -445,7 +445,7 @@ def render_categorical(config: Settings, summary: dict) -> dict:
                     }
                     for name, value in zip(rows, summary["first_rows"])
                 ],
-                name="Sample",
+                name="Amostra",
                 style=config.html.style,
             )
         overview_items.append(sample)
@@ -481,7 +481,7 @@ def render_categorical(config: Settings, summary: dict) -> dict:
                         for idx, s in enumerate(summary["value_counts_without_nan"])
                     ],
                     anchor_id=f"{varid}cat_frequency_plot",
-                    name="Common Values (Plot)",
+                    name="Valores Frequentes (Plot)",
                     sequence_type="batch_grid",
                     batch_size=len(config.html.style._labels),
                 )
@@ -496,8 +496,8 @@ def render_categorical(config: Settings, summary: dict) -> dict:
                         summary["value_counts_without_nan"],
                     ),
                     image_format=image_format,
-                    alt="Common Values (Plot)",
-                    name="Common Values (Plot)",
+                    alt="Valores Frequentes (Plot)",
+                    name="Valores Frequentes (Plot)",
                     anchor_id=f"{varid}cat_frequency_plot",
                 )
             )
@@ -513,7 +513,7 @@ def render_categorical(config: Settings, summary: dict) -> dict:
         ),
         Container(
             string_items,
-            name="Categories",
+            name="Categorias",
             anchor_id=f"{varid}string",
             sequence_type="named_list"
             if len(config.html.style._labels) > 1
@@ -532,7 +532,7 @@ def render_categorical(config: Settings, summary: dict) -> dict:
 
         fqwo = FrequencyTable(
             woc,
-            name="Common words",
+            name="Palavras Frequentes",
             anchor_id=f"{varid}cwo",
             redact=config.vars.cat.redact,
         )
@@ -540,7 +540,7 @@ def render_categorical(config: Settings, summary: dict) -> dict:
         bottom_items.append(
             Container(
                 [fqwo],
-                name="Words",
+                name="Palavras",
                 anchor_id=f"{varid}word",
                 sequence_type="grid",
             )
@@ -551,8 +551,8 @@ def render_categorical(config: Settings, summary: dict) -> dict:
         bottom_items.append(
             Container(
                 [unitab],
-                name="Characters",
-                anchor_id=f"{varid}characters",
+                name="Carateres",
+                anchor_id=f"{varid}carateres",
                 sequence_type="grid",
             )
         )

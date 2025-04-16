@@ -70,20 +70,20 @@ def get_missing_active(config: Settings, table_stats: dict) -> Dict[str, Any]:
     missing_map = {
         "bar": {
             "min_missing": 0,
-            "name": "Count",
-            "caption": "A simple visualization of nullity by column.",
+            "name": "Contagem",
+            "caption": "Uma visualização simples dos valores em falta por coluna.",
             "function": MissingBar(),
         },
         "matrix": {
             "min_missing": 0,
-            "name": "Matrix",
-            "caption": "Nullity matrix is a data-dense display which lets you quickly visually pick out patterns in data completion.",
+            "name": "Matriz",
+            "caption": "A matriz de valores em falta é uma visualização densa em dados que permite identificar visualmente e rapidamente padrões no preenchimento dos dados.",
             "function": MissingMatrix(),
         },
         "heatmap": {
             "min_missing": 2,
-            "name": "Heatmap",
-            "caption": "The correlation heatmap measures nullity correlation: how strongly the presence or absence of one variable affects the presence of another.",
+            "name": "Mapa de calor",
+            "caption": "O mapa de calor de correlação mede a correlação dos valores em falta: a intensidade com que a presença ou ausência de uma variável afeta a presença de outra.",
             "function": MissingHeatmap(),
         },
     }

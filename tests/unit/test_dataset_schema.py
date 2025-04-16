@@ -31,7 +31,7 @@ def test_dataset_schema():
             assert f"<th>{key.capitalize()}</th>" in html
     assert "<tr><th>Copyright</th><td>(c) RandoCorp LLC 2020</td></tr>"
     assert '<tr><th>URL</th><td><a href="http://www.dataset-sources.com/data/dataset.dat">http://www.dataset-sources.com/data/dataset.dat</a></td></tr>'
-    assert ">Reproduction<" in html
+    assert ">Reprodução<" in html
 
 
 def test_dataset_schema_empty():
@@ -48,4 +48,4 @@ def test_dataset_schema_empty():
     html = report.to_html()
 
     assert ">Dataset<" not in html
-    assert ">Reproduction<" in html
+    assert ">Reprodução<" in html
