@@ -378,7 +378,7 @@ def get_report_structure(config: Settings, summary: BaseDescription) -> Root:
         if len(summary.variables) > 0:
             section_items.append(
                 Dropdown(
-                    name="Variables",
+                    name="Variáveis",
                     anchor_id="variables-dropdown",
                     id="variables-dropdown",
                     is_row=False,

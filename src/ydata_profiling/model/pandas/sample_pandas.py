@@ -23,16 +23,16 @@ def pandas_get_sample(config: Settings, df: pd.DataFrame) -> List[Sample]:
 
     n_head = config.samples.head
     if n_head > 0:
-        samples.append(Sample(id="head", data=df.head(n=n_head), name="First rows"))
+        samples.append(Sample(id="head", data=df.head(n=n_head), name="Primeiras linhas"))
 
     n_tail = config.samples.tail
     if n_tail > 0:
-        samples.append(Sample(id="tail", data=df.tail(n=n_tail), name="Last rows"))
+        samples.append(Sample(id="tail", data=df.tail(n=n_tail), name="Últimas linhas"))
 
     n_random = config.samples.random
     if n_random > 0:
         samples.append(
-            Sample(id="random", data=df.sample(n=n_random), name="Random sample")
+            Sample(id="random", data=df.sample(n=n_random), name="Amostra aleatória")
         )
 
     return samples

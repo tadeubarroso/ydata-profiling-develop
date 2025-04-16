@@ -420,7 +420,7 @@ def render_categorical(config: Settings, summary: dict) -> dict:
     overview_items.append(unique_stats)
 
     if not config.vars.cat.redact:
-        rows = ("1st row", "2nd row", "3rd row", "4th row", "5th row")
+        rows = ("1ª linha", "2ª linha", "3ª linha", "4ª linha", "5ª linha")
 
         if isinstance(summary["first_rows"], list):
             sample = Table(

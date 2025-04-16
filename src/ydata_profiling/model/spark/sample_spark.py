@@ -25,7 +25,7 @@ def get_sample_spark(config: Settings, df: DataFrame) -> List[Sample]:
     n_head = config.samples.head
     if n_head > 0:
         samples.append(
-            Sample(id="head", data=df.limit(n_head).toPandas(), name="First rows")
+            Sample(id="head", data=df.limit(n_head).toPandas(), name="Primeiras linhas")
         )
 
     n_tail = config.samples.tail

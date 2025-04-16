@@ -35,64 +35,64 @@ class AlertType(Enum):
     """Alert types"""
 
     CONSTANT = auto()
-    """This variable has a constant value."""
+    """Esta variável tem um valor constante."""
 
     ZEROS = auto()
-    """This variable contains zeros."""
+    """Esta variável contém zeros."""
 
     HIGH_CORRELATION = auto()
-    """This variable is highly correlated."""
+    """Esta variável está altamente correlacionada."""
 
     HIGH_CARDINALITY = auto()
-    """This variable has a high cardinality."""
+    """Esta variável tem uma cardinalidade elevada."""
 
     UNSUPPORTED = auto()
-    """This variable is unsupported."""
+    """Esta variável não é suportada."""
 
     DUPLICATES = auto()
-    """This variable contains duplicates."""
+    """Esta variável contém duplicados."""
 
     NEAR_DUPLICATES = auto()
-    """This variable contains duplicates."""
+    """Esta variável contém duplicados."""
 
     SKEWED = auto()
-    """This variable is highly skewed."""
+    """Esta variável está fortemente assimétrica."""
 
     IMBALANCE = auto()
-    """This variable is imbalanced."""
+    """Esta variável está desequilibrada."""
 
     MISSING = auto()
-    """This variable contains missing values."""
+    """Esta variável contém valores em falta."""
 
     INFINITE = auto()
-    """This variable contains infinite values."""
+    """Esta variável contém valores infinitos."""
 
     TYPE_DATE = auto()
-    """This variable is likely a datetime, but treated as categorical."""
+    """Esta variável é provavelmente do tipo data/hora, mas é tratada como categórica."""
 
     UNIQUE = auto()
-    """This variable has unique values."""
+    """Esta variável tem valores únicos."""
 
     DIRTY_CATEGORY = auto()
-    """This variable is a categories with potential fuzzy values, and for that reason might incur in consistency issues."""
+    """Esta variável é uma variável categórica com potenciais valores imprecisos e, por essa razão, pode causar problemas de consistência."""
 
     CONSTANT_LENGTH = auto()
-    """This variable has a constant length."""
+    """Esta variável tem um comprimento constante."""
 
     REJECTED = auto()
-    """Variables are rejected if we do not want to consider them for further analysis."""
+    """As variáveis são rejeitadas se não as quisermos considerar para análise posterior."""
 
     UNIFORM = auto()
-    """The variable is uniformly distributed."""
+    """A variável está uniformemente distribuída."""
 
     NON_STATIONARY = auto()
-    """The variable is a non-stationary series."""
+    """A variável é uma série não estacionária."""
 
     SEASONAL = auto()
-    """The variable is a seasonal time series."""
+    """A variável é uma série temporal sazonal."""
 
     EMPTY = auto()
-    """The DataFrame is empty."""
+    """O DataFrame está vazio."""
 
 
 class Alert:
@@ -134,7 +134,7 @@ class Alert:
             num = len(self.values["fields"])
             title = ", ".join(self.values["fields"])
             corr = self.values["corr"]
-            hint = f'data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="This variable has a high {corr} correlation with {num} fields: {title}"'
+            hint = f'data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Esta variável tem uma elevada correlação {corr} com {num} campos: {title}"'
 
         return (
             f'<span class="badge text-bg-{style}" {hint}>{self.alert_type_name}</span>'

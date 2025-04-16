@@ -104,7 +104,7 @@ def render_text(config: Settings, summary: Dict[str, Any]) -> Dict[str, Any]:
     overview_items.append(unique_stats)
 
     if not config.vars.text.redact:
-        rows = ("1st row", "2nd row", "3rd row", "4th row", "5th row")
+        rows = ("1ª linha", "2ª linha", "3ª linha", "4ª linha", "5ª linha")
 
         if isinstance(summary["first_rows"], list):
             sample = Table(

@@ -25,6 +25,6 @@ def test_issue725(config, test_data):
 
 
 def test_issue725_existing(config, test_data):
-    test_data = test_data.rename(columns={"count": "# duplicates"})
+    test_data = test_data.rename(columns={"count": "# duplicados"})
     with pytest.raises(ValueError):
         _, _ = get_duplicates(config, test_data, list(test_data.columns))
