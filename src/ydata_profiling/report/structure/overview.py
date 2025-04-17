@@ -72,11 +72,26 @@ def get_dataset_overview(config: Settings, summary: BaseDescription) -> Renderab
     dataset_info = Table(
         table_metrics, name="Estatísticas do conjunto de dados", style=config.html.style
     )
+    def classificar_e_traduzir_nome_tipo(type_name):
+        """
+        Recebe o nome de um tipo de variável (como string) e retorna
+        'Numérico' se o nome for 'Numeric', 'Categórico' se for 'Categorical',
+        ou o nome original para outros casos.
+        """
+        nome_tipo_str = str(type_name).lower() # Converte e coloca em minúsculas
 
+        if nome_tipo_str == "numeric":
+            retorno = "Numérico"
+        elif nome_tipo_str == "categorical":
+            retorno = "Categórico"
+        else:
+            retorno = str(type_name) # Retorna o nome original como string
+
+        return retorno
     dataset_types = Table(
         [
             {
-                "name": str(type_name),
+                "name": classificar_e_traduzir_nome_tipo(type_name),#str(type_name),
                 "value": fmt_numeric(count, precision=config.report.precision),
             }
             for type_name, count in summary.table["types"].items()
