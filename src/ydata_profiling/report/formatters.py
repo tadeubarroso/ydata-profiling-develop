@@ -305,15 +305,15 @@ def fmt(value: Any) -> str:
 @list_args
 def fmt_monotonic(value: int) -> str:
     if value == 2:
-        return "Strictly increasing"
+        return "Estritamente crescente"
     elif value == 1:
-        return "Increasing"
+        return "Crescente"
     elif value == 0:
-        return "Not monotonic"
+        return "Não monotónico"
     elif value == -1:
-        return "Decreasing"
+        return "Decrescente"
     elif value == -2:
-        return "Strictly decreasing"
+        return "Estritamente decrescente"
     else:
         raise ValueError("Value should be integer ranging from -2 to 2.")
 
