@@ -438,7 +438,7 @@ class SkewedAlert(Alert):
         super().__init__(
             alert_type=AlertType.SKEWED,
             values=values,
-            column_name=column_name,
+            column_name="assimétrico",#column_name,
             fields={"skewness"},
             is_empty=is_empty,
         )
