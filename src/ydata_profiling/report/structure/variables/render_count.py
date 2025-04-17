@@ -126,13 +126,13 @@ def render_count(config: Settings, summary: dict) -> dict:
         [
             FrequencyTable(
                 template_variables["firstn_expanded"],
-                name=f"Mínimo {config.n_extreme_obs} valores",
+                name=f"{config.n_extreme_obs} menores valores",
                 anchor_id="firstn",
                 redact=False,
             ),
             FrequencyTable(
                 template_variables["lastn_expanded"],
-                name=f"Máximo {config.n_extreme_obs} valores",
+                name=f"{config.n_extreme_obs} maiores valores",
                 anchor_id="lastn",
                 redact=False,
             ),
