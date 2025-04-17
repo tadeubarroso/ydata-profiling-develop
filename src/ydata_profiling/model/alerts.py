@@ -432,7 +432,7 @@ class SkewedAlert(Alert):
     def __init__(
         self,
         values: Optional[Dict] = None,
-        column_name: Optional[str] ="Assimétrico",#None,
+        column_name: Optional[str] =None,
         is_empty: bool = False,
     ):
         super().__init__(
